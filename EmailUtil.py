@@ -22,21 +22,11 @@ def email():
 
     body = "Status of the day"
 
-    fp = open("watering.log", "rb")
+    fp = open("watering.log", "r")
     msg.attach(MIMEText(fp.read(), 'plain'))
 
-    filename = "NAME OF THE FILE WITH ITS EXTENSION"
-    attachment = open("PATH OF THE FILE", "rb")
-
-    part = MIMEBase('application', 'octet-stream')
-    part.set_payload(attachment.read())
-    base64.encode_base64(part)
-    part.add_header('Content-Disposition', "attachment; filename= %s" % filename)
-
-    msg.attach(part)
-
     server = smtplib.SMTP(EMAIL_HOST)
-    server.starttls()
+    server.connect(EMAIL_HOST, EMAIL_PORT)
     server.login( EMAIL_HOST_USER, EMAIL_HOST_PASSWORD )
     server.sendmail(DEFAULT_FROM_EMAIL, TO_ADDRESS, msg.as_string())
     server.quit()

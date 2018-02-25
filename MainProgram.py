@@ -3,7 +3,8 @@ import logging, logging.config
 import sched, time
 from EmailUtil import email
 
-class Main:
+
+class MainProgram:
     logging.config.fileConfig("logging.ini")
     logger = logging.getLogger(__name__)
 
@@ -14,21 +15,27 @@ class Main:
         # self.raspberry = RaspberrySdk()
 
     def finish_watering(self):
-        email.email()
+        email()
 
-    def main(self):
+    def water(self):
+        success = False;
         try:
             self.raspberry.low(self.trigger_gpio_pin)
             self.logger.info("Watering is started.")
             time.sleep(30 * 60)
-            self.logger.info("Watering is finished.")
+            success = True
         except:
             self.logger.warning("Failed to start watering.")
         finally:
             self.raspberry.high(self.trigger_gpio_pin)
-            self.finish_watering()
 
-    if __name__ == "__main__":
-        logging.info("Logging started")
-        m = Main()
-        m.finish_watering()
+        if success:
+            self.logger.info("Watering is completed successfully.")
+        else:
+            self.logger.error("Failed to water.")
+
+        self.finish_watering()
+
+if __name__ == "__main__":
+    m = MainProgram()
+    m.water()
