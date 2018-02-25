@@ -13,6 +13,7 @@ class MainProgram:
         self.water_period_in_hour = 8
         self.water_time_in_min = 1
         self.raspberry = RaspberrySdk()
+        self.raspberry.output(self.trigger_gpio_pin)
 
     def finish_watering(self):
         email()
