@@ -1,4 +1,4 @@
-# from RaspberrySdk import RaspberrySdk
+from RaspberrySdk import RaspberrySdk
 import logging, logging.config
 import sched, time
 from EmailUtil import email
@@ -12,7 +12,7 @@ class MainProgram:
         self.trigger_gpio_pin = 7
         self.water_period_in_hour = 8
         self.water_time_in_min = 30
-        # self.raspberry = RaspberrySdk()
+        self.raspberry = RaspberrySdk()
 
     def finish_watering(self):
         email()
