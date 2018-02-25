@@ -11,7 +11,7 @@ class MainProgram:
     def __init__(self):
         self.trigger_gpio_pin = 7
         self.water_period_in_hour = 8
-        self.water_time_in_min = 30
+        self.water_time_in_min = 1
         self.raspberry = RaspberrySdk()
 
     def finish_watering(self):
@@ -22,7 +22,7 @@ class MainProgram:
         try:
             self.raspberry.low(self.trigger_gpio_pin)
             self.logger.info("Watering is started.")
-            time.sleep(30 * 60)
+            time.sleep(self.water_time_in_min * 60)
             success = True
         except:
             self.logger.warning("Failed to start watering.")
