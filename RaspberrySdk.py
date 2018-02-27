@@ -4,6 +4,7 @@ import RPi.GPIO as GPIO
 class RaspberrySdk:
 
     def __init__(self):
+        GPIO.cleanup()
         GPIO.setmode(GPIO.BCM)
 
     def input(self, pin):
@@ -17,4 +18,7 @@ class RaspberrySdk:
 
     def low(self, pin):
         GPIO.output(pin, GPIO.LOW)
+
+    def cleanup(self):
+        GPIO.cleanup()
 

@@ -16,6 +16,7 @@ class MainProgram:
         self.raspberry.output(self.trigger_gpio_pin)
 
     def finish_watering(self):
+        self.raspberry.cleanup();
         email()
 
     def water(self):
