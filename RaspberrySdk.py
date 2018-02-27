@@ -7,10 +7,10 @@ class RaspberrySdk:
         GPIO.setmode(GPIO.BCM)
 
     def input(self, pin):
-        GPIO.setup(pin, GPIO.INPUT)
+        GPIO.setup(pin, GPIO.IN)
 
     def output(self, pin):
-        GPIO.setup(pin, GPIO.OUTPUT)
+        GPIO.setup(pin, GPIO.OUT)
 
     def high(self, pin):
         GPIO.output(pin, GPIO.HIGH)
