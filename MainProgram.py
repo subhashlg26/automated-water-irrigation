@@ -9,7 +9,7 @@ class MainProgram:
     logger = logging.getLogger(__name__)
 
     def __init__(self):
-        self.trigger_gpio_pin = 4
+        self.trigger_gpio_pin = 17
         self.water_period_in_hour = 8
         self.water_time_in_min = 1
         self.raspberry = RaspberrySdk()
